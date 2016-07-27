@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"  
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui">  
+
+    <h:head>  
+        <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <title>Inicio</title>
+        <link rel="stylesheet" type="text/css" href="css/inicio.css" media="screen" />
+    </h:head>  
+
+    <h:body>  
+        <h:form>  
+            <p:layoutUnit position="center" styleClass="flotanteLogin">
+                <h:panelGrid columns="2" cellpadding="5" rendered="#{!inicioBean.estadoRegistro}">
+                    <h:outputText value="Usuario: " />
+                    <p:inputText  id="user" value="#{inicioBean.user}" />
+
+                    <h:outputText value="Contrasena: " />
+                    <p:password id="password" value="#{inicioBean.password}" />
+                    <p:spacer height="10" />
+                </h:panelGrid>
+                <h:panelGrid columns="2" cellpadding="5" rendered="#{inicioBean.estadoRegistro}">
+                    <h:outputText value="Usuario: " />
+                    <p:inputText  id="userRegistro" value="#{inicioBean.userRegistro}"/>
+
+                    <h:outputText value="Contrasena: " />
+                    <p:password id="passwordRegistro" value="#{inicioBean.passwordRegistro}" />
+
+                    <h:outputText value="Email: " />
+                    <p:inputText  id="emailRegistro" value="#{inicioBean.emailRegistro}" />
+
+                    <h:outputText value="Raza: " />
+                    <p:selectOneMenu id="raza" value="#{inicioBean.razaRegistro}" style="width:125px">
+                        <f:selectItem itemLabel="Tauri" itemValue="Tauri" />                        
+                    </p:selectOneMenu>
+                    <p:spacer height="10" />
+                </h:panelGrid>
+                <p:commandButton value="Iniciar Sesion" id="login" actionListener="#{inicioBean.iniciarSesion}"
+                                 rendered="#{!inicioBean.estadoRegistro}"/>
+                <p:commandButton value="Registrate" id="registrate" actionListener="#{inicioBean.cambiarAEstadoRegistro}"
+                                 rendered="#{!inicioBean.estadoRegistro}" update="@form" />
+                <p:commandButton value="Registrar" id="registrar" actionListener="#{inicioBean.cambiarAEstadoLogin}" 
+                                 rendered="#{inicioBean.estadoRegistro}"  update="@form"/>
+            </p:layoutUnit>
+        </h:form>      
+    </h:body>  
+</html>  
